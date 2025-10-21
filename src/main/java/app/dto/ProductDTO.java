@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ProductDTO {
-
+    private int id;
     private String name;
     private double price;
     private Category category;
