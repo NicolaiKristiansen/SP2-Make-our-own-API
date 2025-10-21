@@ -6,7 +6,7 @@ public interface IDAO<T, F> {
 
     public T findById(int id);
 
-    public T update(F f);
+    public T update(Integer integer, F f);
 
     public void delete(int id);
 }
