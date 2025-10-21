@@ -1,10 +1,8 @@
 package app.entities;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import app.dto.ReceiptDTO;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,4 +19,22 @@ public class Receipt {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int id;
+
+    public double totalPrice;
+
+
+    @OneToOne
+    @JoinColumn(name = "basket_id")
+    public Basket basket;
+
+    public Receipt(ReceiptDTO dto){
+        this.id = dto.getId();
+        this.totalPrice = dto.getTotalPrice();
+        if(dto.getBasketId() != 0) {
+            Basket b = new Basket();
+            b.setId(dto.getBasketId()); // sæt kun ID
+            this.basket = b;
+        }
+    }
+
 }
