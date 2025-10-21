@@ -28,7 +28,7 @@ public class Main {
                 })
 
                  */
-                .startServer(7007)
+                .startServer(7070)
                 .setCORS()
                 .setGeneralExceptionHandling();
     }
