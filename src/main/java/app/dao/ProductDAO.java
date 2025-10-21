@@ -66,7 +66,8 @@ public class ProductDAO implements IDAO<Product, ProductDTO>{
         try(EntityManager em = emf.createEntityManager()){
             EntityTransaction ts = em.getTransaction();
             ts.begin();
-            em.remove(id);
+            Product product = findById(id);
+            em.remove(product);
             ts.commit();
 
             if(findById(id) == null){
