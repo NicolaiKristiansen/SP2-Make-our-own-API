@@ -20,7 +20,7 @@ public class Receipt {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int id;
 
-    public double total_price;
+    public double totalPrice;
 
 
     @OneToOne
@@ -29,8 +29,12 @@ public class Receipt {
 
     public Receipt(ReceiptDTO dto){
         this.id = dto.getId();
-        this.total_price = dto.getTotalPrice();
-        this.basket = dto.getBasket();
+        this.totalPrice = dto.getTotalPrice();
+        if(dto.getBasketId() != 0) {
+            Basket b = new Basket();
+            b.setId(dto.getBasketId()); // sæt kun ID
+            this.basket = b;
+        }
     }
 
 }

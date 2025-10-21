@@ -18,7 +18,7 @@ public class ReceiptDTO {
 
     public ReceiptDTO(Receipt receipt){
         this.id = receipt.getId();
-        this.totalPrice = receipt.getTotal_price();
+        this.totalPrice = receipt.getTotalPrice();
         this.basketId = receipt.getBasket().getId();
     }
 }
