@@ -7,7 +7,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 
 public class BasketDAO implements IDAO<Basket, BasketDTO> {
-    EntityManagerFactory emf = HibernateConfig.getEntityManagerFactory();
+    EntityManagerFactory emf;
 
     public BasketDAO(EntityManagerFactory emf) {
         this.emf = emf;
