@@ -20,7 +20,10 @@ public class Basket {
     private int id;
 
     @OneToMany(cascade = CascadeType.PERSIST)
-    List<Product> products = new ArrayList<>();
+    private List<Product> products = new ArrayList<>();
+
+    @OneToOne
+    private Receipt receipt;
 
     public Basket(int id, List<Product> products) {
         this.id = id;
