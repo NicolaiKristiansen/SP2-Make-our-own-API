@@ -1,8 +1,7 @@
 package app.entities;
 
 import app.dto.ProductDTO;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import app.Category;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,10 +16,15 @@ import lombok.ToString;
 public class Product {
 
     @Id
+    @GeneratedValue (strategy = GenerationType.AUTO)
     private int id;
     private String name;
     private double price;
     private Category category;
+
+    @ManyToOne
+    @JoinColumn (name = "products")
+    private Basket basket;
 
     public Product(int id, String name, double price, Category category) {
         this.id = id;

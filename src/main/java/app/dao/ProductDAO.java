@@ -47,13 +47,32 @@ public class ProductDAO implements IDAO<Product, ProductDTO>{
             EntityTransaction ts = em.getTransaction();
             ts.begin();
             Product found = em.find(Product.class, id);
+            found.setName(productDTO.getName());
+            found.setPrice(productDTO.getPrice());
+            found.setCategory(productDTO.getCategory());
 
+            Product product = em.merge(found);
+            if(product.getName() == productDTO.getName() && product.getPrice() == productDTO.getPrice() && product.getCategory() == productDTO.getCategory()){
+                return product;
+            } else{
+                System.out.println("We could not update the products as one of the variable does not contain the new information");
+            }
         }
         return null;
     }
 
     @Override
     public void delete(int id) {
+        try(EntityManager em = emf.createEntityManager()){
+            EntityTransaction ts = em.getTransaction();
+            ts.begin();
+            em.remove(id);
+            ts.commit();
+
+            if(findById(id) == null){
+                System.out.println("The product has been deleted");
+            }
+        }
 
     }
 }
