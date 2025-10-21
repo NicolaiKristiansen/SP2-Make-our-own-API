@@ -36,10 +36,10 @@ public class BasketDAO implements IDAO<Basket, BasketDTO> {
     }
 
     @Override
-    public Basket update(Integer integer, BasketDTO basketDTO) {
+    public Basket update(BasketDTO basketDTO, Integer id) {
         try(EntityManager em = emf.createEntityManager()) {
             em.getTransaction().begin();
-            Basket b = em.find(Basket.class, integer);
+            Basket b = em.find(Basket.class, id);
             b.setId(basketDTO.getId());
             b.setProducts(basketDTO.getProducts());
             b.setReceipt(basketDTO.getReceipt());
