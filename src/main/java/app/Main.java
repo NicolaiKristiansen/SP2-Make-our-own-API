@@ -2,6 +2,7 @@ package app;
 
 import app.config.ApplicationConfig;
 import app.config.HibernateConfig;
+import app.routes.Routes;
 import jakarta.persistence.EntityManagerFactory;
 
 import static io.javalin.apibuilder.ApiBuilder.get;
@@ -21,6 +22,7 @@ public class Main {
 //            .checkSecurityRoles() // check for role when route is called
 //            .setRoute(SecurityRoutes.getSecurityRoutes())
 //            .setRoute(SecurityRoutes.getSecuredRoutes())
+                .setRoute(new Routes().getRoutes())
                 .setRoute(()->{
                     path("/index",()->{
                         get("/",ctx->ctx.render("index.html"));

@@ -38,15 +38,9 @@ public class BasketController {
         int id = Integer.parseInt(ctx.pathParam("id"));
         Basket basket = basketDAO.findById(id);
         BasketDTO basketDTO = new BasketDTO(basket);
-        if (basketDTO != null) {
-            ctx.status(HttpStatus.OK);
-            ctx.json(basketDTO);
-            logger.info("Fetched basket with id: " + id);
-        } else {
-            ctx.status(HttpStatus.NOT_FOUND);
-            ctx.result("Basket not found");
-            logger.warn("Basket with id " + id + " not found");
-        }
+        ctx.status(HttpStatus.OK);
+        ctx.json(basketDTO);
+        logger.info("Fetched basket with id: " + id);
     }
 
     public void updateBasket(Context ctx) {

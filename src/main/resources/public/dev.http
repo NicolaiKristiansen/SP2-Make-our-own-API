@@ -2,4 +2,18 @@
 GET https://examples.http-client.intellij.net/get
     ?generated-in=IntelliJ IDEA
 
-###
+### get basket
+GET http://localhost:7070/api/baskets/1
+Accept: application/json
+
+
+### post with basket
+POST http://localhost:7070/api/baskets
+Content-Type: application/json
+
+{
+}
+
+### delete basket
+DELETE http://localhost:7070/api/baskets/1
+Accept: application/json
