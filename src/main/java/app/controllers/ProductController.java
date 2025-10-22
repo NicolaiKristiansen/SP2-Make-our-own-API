@@ -24,7 +24,6 @@ public class ProductController {
                 ctx.status(HttpStatus.OK).json(createdProduct);
             } catch (Exception e) {
                 e.printStackTrace();
-                e.
             }
         }
 
