@@ -6,12 +6,25 @@ import app.entities.Receipt;
 import app.exceptions.ApiException;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.TypedQuery;
+
+import java.util.List;
 
 public class ReceiptDAO implements IDAO<Receipt, ReceiptDTO> {
     EntityManagerFactory emf;
 
     public ReceiptDAO(EntityManagerFactory emf) {
         this.emf = emf;
+    }
+
+
+    public List<ReceiptDTO> getAllReceipt(){
+        try(EntityManager em = emf.createEntityManager()){
+            TypedQuery<Receipt> query = em.createQuery("SELECT r FROM Receipt r", Receipt.class);
+            List<Receipt>receipts = query.getResultList();
+
+        return ReceiptDTO.toDTOlist(receipts);
+        }
     }
 
     @Override
@@ -57,6 +70,13 @@ return updatedReceipt;
 
     @Override
     public void delete(int id) {
-
+    try(EntityManager em = emf.createEntityManager()){
+    Receipt deletedReceipt = em.find(Receipt.class, id);
+    em.getTransaction().begin();
+    em.remove(deletedReceipt);
+    em.getTransaction().commit();
+    }catch(ApiException e){
+        throw new ApiException(e.getCode(), "Failed to delete receipt with id " + id);
+       }
     }
 }
