@@ -41,11 +41,11 @@ public class BasketController {
         if (basketDTO != null) {
             ctx.status(HttpStatus.OK);
             ctx.json(basketDTO);
-            logger.info("Fetched hotel with id: " + id);
+            logger.info("Fetched basket with id: " + id);
         } else {
             ctx.status(HttpStatus.NOT_FOUND);
-            ctx.result("Hotel not found");
-            logger.warn("Hotel with id " + id + " not found");
+            ctx.result("Basket not found");
+            logger.warn("Basket with id " + id + " not found");
         }
     }
 
