@@ -35,4 +35,11 @@ public class Basket {
         this.products = basketDTO.getProducts();
     }
 
+    public void addProduct(Product product) {
+        if(product != null) {
+            this.products.add(product);
+        } else {
+            System.out.println("product is null");
+        }
+    }
 }
