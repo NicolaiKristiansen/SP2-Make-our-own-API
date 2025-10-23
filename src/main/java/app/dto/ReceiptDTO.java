@@ -4,6 +4,9 @@ package app.dto;
 import app.entities.Receipt;
 import lombok.*;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -20,5 +23,10 @@ public class ReceiptDTO {
         this.id = receipt.getId();
         this.totalPrice = receipt.getTotalPrice();
         this.basketId = receipt.getBasket().getId();
+    }
+
+
+    public static List<ReceiptDTO> toDTOlist(List<Receipt> ResultReceipts){
+        return ResultReceipts.stream().map(ReceiptDTO::new).toList();
     }
 }

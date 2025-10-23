@@ -2,6 +2,7 @@ package app;
 
 import app.config.ApplicationConfig;
 import app.config.HibernateConfig;
+import app.routes.Routes;
 import jakarta.persistence.EntityManagerFactory;
 
 import static io.javalin.apibuilder.ApiBuilder.get;
@@ -12,6 +13,7 @@ import static io.javalin.apibuilder.ApiBuilder.path;
 public class Main {
     public static void main(String[] args) {
         System.out.println("Hello SP2");
+        Routes routes = new Routes();
 
         EntityManagerFactory emf = HibernateConfig.getEntityManagerFactory();
 
@@ -26,8 +28,7 @@ public class Main {
                         get("/",ctx->ctx.render("index.html"));
                     });
                 })
-
-
+                .setRoute(routes.getRoutes())
                 .startServer(7070)
                 .setCORS()
                 .setGeneralExceptionHandling();
