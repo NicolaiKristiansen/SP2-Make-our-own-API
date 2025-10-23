@@ -16,7 +16,7 @@ class BasketDAOTest {
 
     @BeforeAll
     public static void setup() {
-        RestAssured.baseURI = "http://localhost:7070/api/v1/basket";
+        RestAssured.baseURI = "http://localhost:7070/api/baskets";
     }
 
     @Test
