@@ -34,4 +34,5 @@ public class Basket {
         this.id = basketDTO.getId();
         this.products = basketDTO.getProducts();
     }
+
 }

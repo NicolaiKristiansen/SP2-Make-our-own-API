@@ -6,11 +6,16 @@ import static io.javalin.apibuilder.ApiBuilder.get;
 import static io.javalin.apibuilder.ApiBuilder.path;
 
 public class Routes {
-    RecieptRoutes recieptRoutes = new RecieptRoutes();
-    public EndpointGroup getRoutes(){
+
+  private BasketRoutes basketRoutes = new BasketRoutes();
+  private RecieptRoutes recieptRoutes = new RecieptRoutes();
+
+    public EndpointGroup getRoutes() {
         return () -> {
             get("/", ctx -> ctx.result("Hello World"));
-            path("/receipt", recieptRoutes.getRoutes());
+            path("/baskets", basketRoutes.getRoutes());
+          path("/receipt", recieptRoutes.getRoutes());
+  
         };
     }
 }

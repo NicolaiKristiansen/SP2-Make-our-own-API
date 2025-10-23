@@ -1,6 +1,5 @@
 package app.dao;
 
-import app.config.HibernateConfig;
 import app.dto.BasketDTO;
 import app.entities.Basket;
 import jakarta.persistence.EntityManager;
@@ -26,13 +25,14 @@ public class BasketDAO implements IDAO<Basket, BasketDTO> {
 
     @Override
     public Basket findById(int id) {
-        Basket basket;
         try(EntityManager em = emf.createEntityManager()) {
-            em.getTransaction().begin();
-            basket = em.find(Basket.class, id);
-            em.getTransaction().commit();
+            Basket basket = em.find(Basket.class, id);
+            if (basket != null) {
+                return basket;
+            } else {
+                return null;
+            }
         }
-        return basket;
     }
 
     @Override
@@ -52,8 +52,9 @@ public class BasketDAO implements IDAO<Basket, BasketDTO> {
     @Override
     public void delete(int id) {
         try(EntityManager em = emf.createEntityManager()) {
+            Basket deleteBasket = em.find(Basket.class, id);
             em.getTransaction().begin();
-            em.remove(id);
+            em.remove(deleteBasket);
             em.getTransaction().commit();
         }
     }
