@@ -25,7 +25,6 @@ public class BasketDAO implements IDAO<Basket, BasketDTO> {
 
     @Override
     public Basket findById(int id) {
-
         try(EntityManager em = emf.createEntityManager()) {
             Basket basket = em.find(Basket.class, id);
             if (basket != null) {
