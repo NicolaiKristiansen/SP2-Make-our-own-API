@@ -7,12 +7,15 @@ import static io.javalin.apibuilder.ApiBuilder.path;
 
 public class Routes {
 
-    private BasketRoutes basketRoutes = new BasketRoutes();
+  private BasketRoutes basketRoutes = new BasketRoutes();
+  private RecieptRoutes recieptRoutes = new RecieptRoutes();
 
     public EndpointGroup getRoutes() {
         return () -> {
             get("/", ctx -> ctx.result("Hello World"));
             path("/baskets", basketRoutes.getRoutes());
+          path("/receipt", recieptRoutes.getRoutes());
+  
         };
     }
 }

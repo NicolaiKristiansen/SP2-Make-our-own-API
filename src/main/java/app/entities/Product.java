@@ -1,6 +1,7 @@
 package app.entities;
 
 import app.dto.ProductDTO;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import app.Category;
 import lombok.Getter;
@@ -24,6 +25,7 @@ public class Product {
 
     @ManyToOne
     @JoinColumn (name = "products")
+    @JsonIgnoreProperties
     private Basket basket;
 
     public Product(int id, String name, double price, Category category) {
