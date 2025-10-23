@@ -23,7 +23,7 @@ public class Main {
 //            .checkSecurityRoles() // check for role when route is called
 //            .setRoute(SecurityRoutes.getSecurityRoutes())
 //            .setRoute(SecurityRoutes.getSecuredRoutes())
-                .setRoute(new Routes().getRoutes())
+//                .setRoute(new Routes().getRoutes())
                 .setRoute(()->{
                     path("/index",()->{
                         get("/",ctx->ctx.render("index.html"));

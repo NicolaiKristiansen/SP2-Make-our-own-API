@@ -1,6 +1,7 @@
 package app.entities;
 
 import app.dto.ProductDTO;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import app.Category;
@@ -21,11 +22,12 @@ public class Product {
     private int id;
     private String name;
     private double price;
+    @Enumerated(value = EnumType.STRING)
     private Category category;
 
-    @ManyToOne
-    @JoinColumn (name = "products")
-    @JsonIgnoreProperties
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn (name = "basket_id")
+    @JsonBackReference
     private Basket basket;
 
     public Product(int id, String name, double price, Category category) {
@@ -46,4 +48,5 @@ public class Product {
         this.price = productDTO.getPrice();
         this.category = productDTO.getCategory();
     }
+
 }

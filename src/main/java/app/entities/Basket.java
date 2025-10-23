@@ -1,6 +1,7 @@
 package app.entities;
 
 import app.dto.BasketDTO;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,7 +20,8 @@ public class Basket {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @OneToMany(cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "basket", orphanRemoval = true, fetch = FetchType.EAGER)
+    @JsonManagedReference
     private List<Product> products = new ArrayList<>();
 
     @OneToOne
@@ -33,6 +35,11 @@ public class Basket {
     public Basket(BasketDTO basketDTO) {
         this.id = basketDTO.getId();
         this.products = basketDTO.getProducts();
+    }
+
+    public void addProduct(Product product){
+        this.getProducts().add(product);
+        product.setBasket(this);
     }
 
 }
