@@ -13,8 +13,9 @@ public class BasketRoutes {
         return () -> {
             get("/{id}", basketController::getBasketById);
             post("/", basketController::createBasket);
-            put("/{id}", basketController::updateBasket);
+            put("/", basketController::updateBasket);
             delete("/{id}", basketController::deleteBasket);
+            put("/{basket_id}/product/{product_id}", basketController::addProduct);
         };
     }
 }

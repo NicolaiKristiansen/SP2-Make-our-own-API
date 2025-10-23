@@ -2,8 +2,12 @@ package app.controllers;
 
 import app.config.HibernateConfig;
 import app.dao.BasketDAO;
+import app.dao.ProductDAO;
 import app.dto.BasketDTO;
+import app.dto.BasketUpdateDTO;
+import app.dto.ProductDTO;
 import app.entities.Basket;
+import app.entities.Product;
 import io.javalin.http.Context;
 import io.javalin.http.HttpStatus;
 import jakarta.persistence.EntityManagerFactory;
@@ -13,7 +17,8 @@ import org.slf4j.LoggerFactory;
 public class BasketController {
     private final EntityManagerFactory emf = HibernateConfig.getEntityManagerFactory();
 
-    BasketDAO basketDAO = new BasketDAO(emf);
+    private BasketDAO basketDAO = new BasketDAO(emf);
+    private ProductDAO productDAO = new ProductDAO(emf);
 
     private static final Logger logger = LoggerFactory.getLogger(BasketController.class);
     private static final Logger debugLogger = LoggerFactory.getLogger("app");
@@ -44,8 +49,16 @@ public class BasketController {
     }
 
     public void updateBasket(Context ctx) {
-        int id = Integer.parseInt(ctx.pathParam("id"));
-        BasketDTO basketDTO = ctx.bodyAsClass(BasketDTO.class);
+        BasketUpdateDTO dto = ctx.bodyAsClass(BasketUpdateDTO.class);
+        Basket basket = new Basket(
+                dto.getId(),
+                dto.getProductIds(),
+                dto.getAmount()
+        );
+
+        basket.setId(basketUpdateDTO.getId());
+        bask
+
         Basket basket = basketDAO.update(basketDTO, id);
         basketDTO = new BasketDTO(basket);
         ctx.status(HttpStatus.OK);
@@ -56,5 +69,29 @@ public class BasketController {
         int id = Integer.parseInt(ctx.pathParam("id"));
         basketDAO.delete(id);
         ctx.result("Basket with id " + id + " deleted");
+    }
+
+    public void addProduct(Context ctx) {
+        int basketId = Integer.parseInt(ctx.pathParam("basket_id"));
+        int productId = Integer.parseInt(ctx.pathParam("product_id"));
+
+        Basket basket = basketDAO.findById(basketId);
+        Product product = productDAO.findById(productId);
+
+        if (basket == null) {
+            ctx.status(HttpStatus.NOT_FOUND).result("Basket not found");
+            return;
+        }
+        if (product == null) {
+            ctx.status(HttpStatus.NOT_FOUND).result("Product not found");
+            return;
+        }
+
+        basket.addProduct(product);
+
+        BasketDTO basketDTO = new BasketDTO(basket);
+
+        basketDAO.update(basketDTO, basketId);
+        ctx.status(HttpStatus.OK).json(new BasketDTO(basket));
     }
 }

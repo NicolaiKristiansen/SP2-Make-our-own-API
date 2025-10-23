@@ -1,6 +1,6 @@
 package app.dao;
 
-import app.Category;
+import app.enums.Category;
 import app.config.HibernateConfig;
 import app.dto.ProductDTO;
 import app.entities.Product;

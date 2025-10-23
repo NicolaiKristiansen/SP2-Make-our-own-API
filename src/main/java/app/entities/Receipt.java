@@ -24,7 +24,6 @@ public class Receipt {
 
 
     @OneToOne
-    @JoinColumn(name = "basket_id")
     public Basket basket;
 
     public Receipt(ReceiptDTO dto){

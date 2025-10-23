@@ -2,6 +2,7 @@ package app;
 
 import app.config.HibernateConfig;
 import app.dao.ProductDAO;
+import app.enums.Category;
 import app.dto.ProductDTO;
 
 import java.util.ArrayList;

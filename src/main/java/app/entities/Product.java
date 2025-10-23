@@ -1,13 +1,16 @@
 package app.entities;
 
+import app.enums.Category;
 import app.dto.ProductDTO;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import app.Category;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -15,7 +18,6 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 public class Product {
-
     @Id
     @GeneratedValue (strategy = GenerationType.AUTO)
     private int id;
@@ -23,24 +25,26 @@ public class Product {
     private double price;
     private Category category;
 
-    @ManyToOne
-    @JoinColumn (name = "products")
-    @JsonIgnoreProperties
-    private Basket basket;
+    @ManyToMany
+    @JsonIgnore
+    private List<Basket> basket = new ArrayList<>();
 
-    public Product(int id, String name, double price, Category category) {
+    public Product(int id, String name, double price, Category category, List<Basket> basket) {
         this.id = id;
         this.name = name;
         this.price = price;
         this.category = category;
+        this.basket = basket;
     }
 
-    public Product(String name, double price, Category category) {
+    public Product(String name, double price, Category category, List<Basket> basket) {
         this.name = name;
         this.price = price;
         this.category = category;
+        this.basket = basket;
     }
 
+    //TODO basketDTO convert to basket but it's a list.
     public Product(ProductDTO productDTO){
         this.name = productDTO.getName();
         this.price = productDTO.getPrice();

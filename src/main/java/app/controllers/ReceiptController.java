@@ -20,7 +20,7 @@ public class ReceiptController {
     private static final Logger logger = LoggerFactory.getLogger(ReceiptController.class);
     private static final Logger debugLogger = LoggerFactory.getLogger("app");
 
-
+/*
     public void getAll(Context ctx){
         try {
             List<ReceiptDTO> receiptDTOS = receiptDAO.getAllReceipt();
@@ -39,6 +39,8 @@ public class ReceiptController {
 
 
     }
+
+ */
 
     public void getReceipt(Context ctx){
     int id = Integer.parseInt(ctx.pathParam("id"));

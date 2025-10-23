@@ -29,3 +29,6 @@ Content-Type: application/json
 ### delete basket
 DELETE http://localhost:7070/api/baskets/1
 Accept: application/json
+
+### update with added product
+PUT http://localhost:7070/api/baskets/1/product/1

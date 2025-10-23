@@ -41,8 +41,8 @@ public class BasketDAO implements IDAO<Basket, BasketDTO> {
             em.getTransaction().begin();
             Basket b = em.find(Basket.class, id);
             b.setId(basketDTO.getId());
-            b.setProducts(basketDTO.getProducts());
-            b.setReceipt(basketDTO.getReceipt());
+          //  b.setProducts(basketDTO.getProducts());
+           // b.setReceipt(basketDTO.getReceipt());
             Basket mergedBasket = em.merge(b);
             em.getTransaction().commit();
             return mergedBasket;

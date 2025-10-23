@@ -17,7 +17,7 @@ public class ReceiptDAO implements IDAO<Receipt, ReceiptDTO> {
         this.emf = emf;
     }
 
-
+/*
     public List<ReceiptDTO> getAllReceipt(){
         try(EntityManager em = emf.createEntityManager()){
             TypedQuery<Receipt> query = em.createQuery("SELECT r FROM Receipt r", Receipt.class);
@@ -27,6 +27,8 @@ public class ReceiptDAO implements IDAO<Receipt, ReceiptDTO> {
         }
     }
 
+
+ */
     @Override
     public Receipt create(ReceiptDTO receiptDTO) {
         Receipt receipt = new Receipt(receiptDTO);

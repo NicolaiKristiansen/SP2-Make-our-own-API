@@ -1,12 +1,12 @@
 package app.dao;
 
-public interface IDAO<T, F> {
+public interface IDAO<E, I> {
 
-    public T create(F f);
+    public E create(I e);
 
-    public T findById(int id);
+    public E findById(int id);
 
-    public T update(F f, Integer id);
+    public E update(I e, Integer id);
 
     public void delete(int id);
 }
