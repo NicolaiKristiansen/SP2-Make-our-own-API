@@ -2,6 +2,7 @@ package app.entities;
 
 import app.dto.ProductDTO;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import app.Category;
@@ -9,6 +10,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -25,10 +29,9 @@ public class Product {
     @Enumerated(value = EnumType.STRING)
     private Category category;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn (name = "basket_id")
-    @JsonBackReference
-    private Basket basket;
+    @ManyToMany(mappedBy = "products", fetch = FetchType.EAGER)
+    @JsonIgnoreProperties("products")
+    private List<Basket> baskets = new ArrayList<>();
 
     public Product(int id, String name, double price, Category category) {
         this.id = id;
@@ -47,6 +50,11 @@ public class Product {
         this.name = productDTO.getName();
         this.price = productDTO.getPrice();
         this.category = productDTO.getCategory();
+    }
+
+    public void addBasket(Basket basket) {
+        this.baskets.add(basket);
+        basket.getProducts().add(this);
     }
 
 }

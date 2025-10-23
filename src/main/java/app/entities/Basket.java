@@ -20,8 +20,12 @@ public class Basket {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @OneToMany(mappedBy = "basket", orphanRemoval = true, fetch = FetchType.EAGER)
-    @JsonManagedReference
+    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @JoinTable(
+            name = "basket_product",
+            joinColumns = @JoinColumn(name = "basket_id"),
+            inverseJoinColumns = @JoinColumn(name = "product_id")
+    )
     private List<Product> products = new ArrayList<>();
 
     @OneToOne
@@ -34,12 +38,12 @@ public class Basket {
 
     public Basket(BasketDTO basketDTO) {
         this.id = basketDTO.getId();
-        this.products = basketDTO.getProducts();
+        this.products = basketDTO.getProducts() != null ? basketDTO.getProducts() : new ArrayList<>();
     }
 
     public void addProduct(Product product){
         this.getProducts().add(product);
-        product.setBasket(this);
+        product.getBaskets().add(this);
     }
 
 }
