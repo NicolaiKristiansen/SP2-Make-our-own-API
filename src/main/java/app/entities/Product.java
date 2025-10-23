@@ -25,29 +25,13 @@ public class Product {
     private double price;
     private Category category;
 
-    @ManyToMany
-    @JsonIgnore
-    private List<Basket> basket = new ArrayList<>();
+    @OneToMany(mappedBy = "product")
+    private List<BasketProduct> basketProducts = new ArrayList<>();
 
-    public Product(int id, String name, double price, Category category, List<Basket> basket) {
-        this.id = id;
+
+    public Product(String name, double price, Category category) {
         this.name = name;
         this.price = price;
         this.category = category;
-        this.basket = basket;
-    }
-
-    public Product(String name, double price, Category category, List<Basket> basket) {
-        this.name = name;
-        this.price = price;
-        this.category = category;
-        this.basket = basket;
-    }
-
-    //TODO basketDTO convert to basket but it's a list.
-    public Product(ProductDTO productDTO){
-        this.name = productDTO.getName();
-        this.price = productDTO.getPrice();
-        this.category = productDTO.getCategory();
     }
 }

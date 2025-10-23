@@ -10,11 +10,31 @@ import jakarta.persistence.TypedQuery;
 
 import java.util.List;
 
-public class ReceiptDAO implements IDAO<Receipt, ReceiptDTO> {
+public class ReceiptDAO implements IDAO<Receipt, Integer> {
     EntityManagerFactory emf;
 
     public ReceiptDAO(EntityManagerFactory emf) {
         this.emf = emf;
+    }
+
+    @Override
+    public Receipt create(Receipt receipt) {
+        return null;
+    }
+
+    @Override
+    public Receipt findById(Integer id) {
+        return null;
+    }
+
+    @Override
+    public Receipt update(Receipt receipt, Integer id) {
+        return null;
+    }
+
+    @Override
+    public void delete(Integer id) {
+
     }
 
 /*
@@ -28,7 +48,7 @@ public class ReceiptDAO implements IDAO<Receipt, ReceiptDTO> {
     }
 
 
- */
+
     @Override
     public Receipt create(ReceiptDTO receiptDTO) {
         Receipt receipt = new Receipt(receiptDTO);
@@ -81,4 +101,6 @@ return updatedReceipt;
         throw new ApiException(e.getCode(), "Failed to delete receipt with id " + id);
        }
     }
+
+ */
 }

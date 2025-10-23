@@ -12,10 +12,13 @@ Accept: application/json
 
 
 ### post with basket
-POST http://localhost:7070/api/baskets
+POST http://localhost:7007/api/baskets
 Content-Type: application/json
 
 {
+  "basketId": "1",
+  "productId": "4",
+  "amount": "2"
 }
 
 ### update a basket

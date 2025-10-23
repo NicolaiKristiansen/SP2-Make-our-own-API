@@ -19,34 +19,10 @@ public class Basket {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @ManyToMany(mappedBy = "basket", cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
-    private List<Product> products = new ArrayList<>();
+    @OneToMany(mappedBy = "basket", cascade = CascadeType.REMOVE)
+    private List<BasketProduct> basketProducts = new ArrayList<>();
 
-    @OneToOne
-    private Receipt receipt;
-
-    public Basket(int id, List<Product> products, Receipt receipt) {
+    public Basket(int id) {
         this.id = id;
-        this.products = products;
-        this.receipt = receipt;
-    }
-
-    //TODO Entity to DTO
-    //TODO all test
-
-    public Basket(BasketDTO basketDTO) {
-        this.id = basketDTO.getId();
-      //  this.products = basketDTO.getProducts();
-       // this.receipt = basketDTO.getReceipt();
-    }
-
-
-
-    public void addProduct(Product product) {
-        if(product != null) {
-            this.products.add(product);
-        } else {
-            System.out.println("Could not find product");
-        }
     }
 }

@@ -7,7 +7,7 @@ import static io.javalin.apibuilder.ApiBuilder.*;
 
 public class ProductRoutes {
     ProductController controller = new ProductController();
-
+/*
     public EndpointGroup getRoutes(){
         return () -> {
             post("/", controller::create);
@@ -17,4 +17,6 @@ public class ProductRoutes {
             delete("/{id}", controller::delete);
         };
     }
+
+ */
 }

@@ -16,6 +16,8 @@ public class ProductController {
     private final EntityManagerFactory emf = HibernateConfig.getEntityManagerFactory();
     private final ProductDAO dao = new ProductDAO(emf);
 
+    /*
+
         public void create(Context ctx){
             try {
                 ProductDTO productDTO = ctx.bodyAsClass(ProductDTO.class);
@@ -80,4 +82,6 @@ public class ProductController {
                 e.printStackTrace();
             }
         }
+
+     */
 }

@@ -14,8 +14,11 @@ public class Routes {
         return () -> {
             get("/", ctx -> ctx.result("Hello World"));
             path("/baskets", basketRoutes.getRoutes());
+            /*
             path("/receipt", recieptRoutes.getRoutes());
             path("/products", productRoutes.getRoutes());
+
+             */
         };
     }
 }

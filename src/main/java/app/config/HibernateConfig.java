@@ -1,6 +1,7 @@
 package app.config;
 
 import app.entities.Basket;
+import app.entities.BasketProduct;
 import app.entities.Product;
 import app.entities.Receipt;
 import app.utils.Utils;
@@ -45,6 +46,7 @@ public class HibernateConfig {
         configuration.addAnnotatedClass(Basket.class);
         configuration.addAnnotatedClass(Product.class);
         configuration.addAnnotatedClass(Receipt.class);
+        configuration.addAnnotatedClass(BasketProduct.class);
     }
 
     private static EntityManagerFactory createEMF(boolean forTest) {

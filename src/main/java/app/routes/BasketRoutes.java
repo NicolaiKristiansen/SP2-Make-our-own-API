@@ -11,11 +11,15 @@ public class BasketRoutes {
 
     public EndpointGroup getRoutes() {
         return () -> {
+            post("/", basketController::addProductToBasket);
+            /*
             get("/{id}", basketController::getBasketById);
             post("/", basketController::createBasket);
             put("/", basketController::updateBasket);
             delete("/{id}", basketController::deleteBasket);
             put("/{basket_id}/product/{product_id}", basketController::addProduct);
+
+             */
         };
     }
 }

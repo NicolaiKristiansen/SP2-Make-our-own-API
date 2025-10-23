@@ -15,16 +15,14 @@ import lombok.Setter;
 
 @Entity
 public class Receipt {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public int id;
+    private int id;
 
-    public double totalPrice;
-
+    private double totalPrice;
 
     @OneToOne
-    public Basket basket;
+    private Basket basket;
 
     public Receipt(ReceiptDTO dto){
         this.id = dto.getId();

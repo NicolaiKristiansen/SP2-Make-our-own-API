@@ -2,11 +2,11 @@ package app.dao;
 
 public interface IDAO<E, I> {
 
-    public E create(I e);
+    public E create(E e);
 
-    public E findById(int id);
+    public E findById(I id);
 
-    public E update(I e, Integer id);
+    public E update(E e, I id);
 
-    public void delete(int id);
+    public void delete(I id);
 }
