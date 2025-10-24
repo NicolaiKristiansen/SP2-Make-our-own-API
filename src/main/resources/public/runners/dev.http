@@ -1,8 +1,8 @@
 //API Endpoints
 
 
-//Basket
-### post with basket
+//Basket Endpoints
+### post a product to specific basket
 POST https://{{url}}/baskets
 Content-Type: application/json
 
@@ -12,18 +12,18 @@ Content-Type: application/json
   "amount": "10"
 }
 
-### get basket
+### get a specific basket
 GET https://{{url}}/baskets/1
 Accept: application/json
 
 
-### delete basket
+### delete a basket
 DELETE https://{{url}}/baskets/1
 Accept: application/json
 
 
-//Product
-### create product
+//Product Endpoints
+### create a product
 POST https://{{url}}/products
 Content-Type: application/json
 
@@ -33,15 +33,15 @@ Content-Type: application/json
   "category": "FOOD"
 }
 
-### find product
+### find a specific product
 GET https://{{url}}/products/1
 Accept: application/json
 
-### find all product
+### find all existing products
 GET https://{{url}}/products
 Accept: application/json
 
-### update product
+### update a product
 PUT https://{{url}}/products/1
 Content-Type: application/json
 Accept: application/json
@@ -57,8 +57,8 @@ DELETE https://{{url}}/products/1
 Accept: application/json
 
 
-//Basket & Product
-### find all products from basket
+//Basket & Product Endpoints
+### find all products from specific basket
 GET https://{{url}}/basketproducts/1
 Accept: application/json
 
