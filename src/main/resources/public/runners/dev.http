@@ -1,26 +1,30 @@
 //API Endpoints
+
+
+//Basket
 ### post with basket
-POST http://localhost:7007/api/baskets
+POST https://{{url}}/baskets
 Content-Type: application/json
 
 {
   "basketId": "1",
-  "productId": "4",
-  "amount": "2"
+  "productId": "2",
+  "amount": "5"
 }
 
 ### get basket
-GET http://localhost:7070/api/baskets/1
+GET https://{{url}}/baskets/1
 Accept: application/json
 
 
 ### delete basket
-DELETE http://localhost:7070/api/baskets/1
+DELETE https://{{url}}/baskets/1
 Accept: application/json
 
 
+//Product
 ### create product
-POST http://localhost:7007/api/products
+POST https://{{url}}/products
 Content-Type: application/json
 
 {
@@ -30,15 +34,15 @@ Content-Type: application/json
 }
 
 ### find product
-GET http://localhost:7007/api/products/1
+GET https://{{url}}/products/1
 Accept: application/json
 
 ### find all product
-GET http://localhost:7007/api/products
+GET https://{{url}}/products
 Accept: application/json
 
 ### update product
-PUT http://localhost:7007/api/products/1
+PUT https://{{url}}/products/1
 Content-Type: application/json
 Accept: application/json
 
@@ -49,5 +53,8 @@ Accept: application/json
 }
 
 ### delete product
-DELETE http://localhost:7007/api/products/1
+DELETE https://{{url}}/products/1
 Accept: application/json
+
+
+//Receipt

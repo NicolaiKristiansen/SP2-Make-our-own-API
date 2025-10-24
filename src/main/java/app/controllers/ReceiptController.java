@@ -2,15 +2,9 @@ package app.controllers;
 
 import app.config.HibernateConfig;
 import app.dao.ReceiptDAO;
-import app.dto.ReceiptDTO;
-import app.entities.Receipt;
-import app.exceptions.ApiException;
-import io.javalin.http.Context;
 import jakarta.persistence.EntityManagerFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.util.List;
 
 public class ReceiptController {
     EntityManagerFactory emf = HibernateConfig.getEntityManagerFactory();

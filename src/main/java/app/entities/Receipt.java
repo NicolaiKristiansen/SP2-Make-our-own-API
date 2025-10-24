@@ -1,7 +1,7 @@
 package app.entities;
 
 
-import app.dto.ReceiptDTO;
+import app.dto.receipt.ReceiptDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

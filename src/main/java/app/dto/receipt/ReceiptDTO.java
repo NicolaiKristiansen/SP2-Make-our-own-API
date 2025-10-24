@@ -1,12 +1,8 @@
-package app.dto;
+package app.dto.receipt;
 
 
-import app.entities.Receipt;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Getter
 @NoArgsConstructor

@@ -1,14 +1,7 @@
 package app.dao;
 
-import app.dto.ReceiptDTO;
-import app.entities.Basket;
 import app.entities.Receipt;
-import app.exceptions.ApiException;
-import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.TypedQuery;
-
-import java.util.List;
 
 public class ReceiptDAO implements IDAO<Receipt, Integer> {
     EntityManagerFactory emf;
