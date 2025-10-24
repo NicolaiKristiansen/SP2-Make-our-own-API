@@ -4,6 +4,10 @@ import app.entities.Product;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.TypedQuery;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class ProductDAO implements IDAO<Product, Integer>{
@@ -34,6 +38,15 @@ public class ProductDAO implements IDAO<Product, Integer>{
             } else {
                 return null;
             }
+        }
+    }
+
+    public List<Product> getAllProducts(){
+        List<Product> products;
+        try(EntityManager em = emf.createEntityManager()){
+            TypedQuery<Product> query= em.createQuery("select p from Product p", Product.class);
+            products = query.getResultList();
+            return products;
         }
     }
 

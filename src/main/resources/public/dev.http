@@ -1,16 +1,4 @@
-### GET request to example server
-GET https://localhost:7070/api/receipt
-
-
-###Udfyld selv id
-GET https://localhost:7070/api/receipt/id
-
-
-### get basket
-GET http://localhost:7070/api/baskets/2
-Accept: application/json
-
-
+//API Endpoints
 ### post with basket
 POST http://localhost:7007/api/baskets
 Content-Type: application/json
@@ -21,13 +9,10 @@ Content-Type: application/json
   "amount": "2"
 }
 
-### update a basket
-PUT http://localhost:7070/api/baskets/1
+### get basket
+GET http://localhost:7070/api/baskets/1
+Accept: application/json
 
-Content-Type: application/json
-
-{
-}
 
 ### delete basket
 DELETE http://localhost:7070/api/baskets/1
@@ -46,6 +31,10 @@ Content-Type: application/json
 
 ### find product
 GET http://localhost:7007/api/products/1
+Accept: application/json
+
+### find all product
+GET http://localhost:7007/api/products
 Accept: application/json
 
 ### update product

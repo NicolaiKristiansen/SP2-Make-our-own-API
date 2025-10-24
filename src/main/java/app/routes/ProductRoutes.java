@@ -12,9 +12,7 @@ public class ProductRoutes {
         return () -> {
             post("/", controller::create);
             get("/{id}", controller::findByID);
-            /*
             get("/", controller::getAll);
-             */
             put("/{id}", controller::update);
             delete("/{id}", controller::delete);
         };

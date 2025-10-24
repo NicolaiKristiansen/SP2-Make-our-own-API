@@ -2,14 +2,20 @@ package app.controllers;
 
 import app.config.HibernateConfig;
 import app.dao.ProductDAO;
+import app.dto.product.ProductDTO;
 import app.dto.product.ProductRequestDTO;
 import app.dto.product.ProductResponseDTO;
+import app.dto.product.ProductsResponseDTO;
 import app.entities.Product;
 import io.javalin.http.Context;
 import io.javalin.http.HttpStatus;
 import jakarta.persistence.EntityManagerFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class ProductController {
 
@@ -58,6 +64,29 @@ public class ProductController {
             ctx.status(HttpStatus.BAD_REQUEST).result("Invalid product id");
         }catch (Exception e){
             e.printStackTrace();
+        }
+    }
+
+    public void getAll(Context ctx) {
+        try {
+            List<Product> products = productDAO.getAllProducts();
+
+            List<ProductDTO> productDTOs = products.stream()
+                    .map(product -> new ProductDTO(
+                            product.getId(),
+                            product.getName(),
+                            product.getPrice(),
+                            product.getCategory()
+                    ))
+                    .collect(Collectors.toList());
+
+            ProductsResponseDTO responseDTO = new ProductsResponseDTO(productDTOs);
+
+            ctx.status(HttpStatus.OK);
+            ctx.json(responseDTO);
+        } catch (Exception e) {
+            e.printStackTrace();
+            ctx.status(HttpStatus.INTERNAL_SERVER_ERROR).result("Kunne ikke hente produkter");
         }
     }
 
