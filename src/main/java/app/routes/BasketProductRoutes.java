@@ -13,13 +13,6 @@ public class BasketProductRoutes {
     public EndpointGroup getRoutes() {
         return () -> {
             get("/{id}", basketProductController::getProductsFromBasket);
-            /*
-            post("/", basketController::createBasket);
-            put("/", basketController::updateBasket);
-            delete("/{id}", basketController::deleteBasket);
-            put("/{basket_id}/product/{product_id}", basketController::addProduct);
-
-             */
         };
     }
 }

@@ -26,14 +26,22 @@ public class ProductController {
 
     public void create(Context ctx) {
         try {
-            ProductRequestDTO dto = ctx.bodyAsClass(ProductRequestDTO.class);
+            ProductRequestDTO requestDTO = ctx.bodyAsClass(ProductRequestDTO.class);
             Product product = new Product(
-                    dto.getName(),
-                    dto.getPrice(),
-                    dto.getCategory());
+                    requestDTO.getName(),
+                    requestDTO.getPrice(),
+                    requestDTO.getCategory());
 
             productDAO.create(product);
+
+            ProductResponseDTO responseDTO = new ProductResponseDTO();
+            responseDTO.setProductId(product.getId());
+            responseDTO.setName(product.getName());
+            responseDTO.setPrice(product.getPrice());
+            responseDTO.setCategory(product.getCategory());
             ctx.status(HttpStatus.CREATED);
+            ctx.json(responseDTO);
+
         } catch (IllegalArgumentException e) {
             logger.error(e.getMessage());
             ctx.status(HttpStatus.BAD_REQUEST);
