@@ -1,17 +1,16 @@
-package app.dto;
+package app.dto.basket;
 
-import app.entities.Basket;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-import java.util.List;
-
-@NoArgsConstructor
 @Getter
+@Setter
+@NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class BasketResponseDTO {
+public class BasketRequestDTO {
     private int basketId;
-    private List<Integer> productIds;
-
+    private int productId;
+    private int amount;
 }

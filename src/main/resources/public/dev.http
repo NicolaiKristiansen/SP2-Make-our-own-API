@@ -33,5 +33,17 @@ Content-Type: application/json
 DELETE http://localhost:7070/api/baskets/1
 Accept: application/json
 
-### update with added product
-PUT http://localhost:7070/api/baskets/1/product/1
+
+### create product
+POST http://localhost:7007/api/products
+Content-Type: application/json
+
+{
+  "name": "Apple",
+  "price": "4.5",
+  "category": "FOOD"
+}
+
+### find product
+GET http://localhost:7007/api/products/1
+Accept: application/json

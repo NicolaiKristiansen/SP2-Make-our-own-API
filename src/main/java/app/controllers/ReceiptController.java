@@ -40,7 +40,7 @@ public class ReceiptController {
 
     }
 
- */
+
 
     public void getReceipt(Context ctx){
     int id = Integer.parseInt(ctx.pathParam("id"));
@@ -63,4 +63,6 @@ public class ReceiptController {
     }
 
     }
+
+ */
 }

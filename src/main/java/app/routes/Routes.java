@@ -16,9 +16,9 @@ public class Routes {
             path("/baskets", basketRoutes.getRoutes());
             /*
             path("/receipt", recieptRoutes.getRoutes());
-            path("/products", productRoutes.getRoutes());
 
              */
+            path("/products", productRoutes.getRoutes());
         };
     }
 }

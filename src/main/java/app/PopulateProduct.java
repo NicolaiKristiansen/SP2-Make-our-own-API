@@ -4,7 +4,6 @@ import app.config.HibernateConfig;
 import app.dao.ProductDAO;
 import app.entities.Product;
 import app.enums.Category;
-import app.dto.ProductDTO;
 
 import java.util.ArrayList;
 

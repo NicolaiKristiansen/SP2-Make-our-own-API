@@ -2,7 +2,7 @@ package app.dao;
 
 import app.enums.Category;
 import app.config.HibernateConfig;
-import app.dto.ProductDTO;
+import app.dto.product.ProductDTO;
 import app.entities.Product;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Order;

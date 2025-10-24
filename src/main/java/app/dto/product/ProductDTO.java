@@ -1,7 +1,8 @@
-package app.dto;
+package app.dto.product;
 
-import com.fasterxml.jackson.annotation.JsonEnumDefaultValue;
+import app.enums.Category;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -10,11 +11,10 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class BasketRequestDTO {
-    private int basketId;
-    private int productId;
-    private int amount;
-
-
+public class ProductDTO {
+    private int id;
+    private String name;
+    private double price;
+    private Category category;
 
 }

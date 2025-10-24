@@ -2,19 +2,65 @@ package app.controllers;
 
 import app.config.HibernateConfig;
 import app.dao.ProductDAO;
-import app.dto.ProductDTO;
+import app.dto.product.ProductRequestDTO;
+import app.dto.product.ProductResponseDTO;
 import app.entities.Product;
 import io.javalin.http.Context;
 import io.javalin.http.HttpStatus;
 import jakarta.persistence.EntityManagerFactory;
-
-import java.util.ArrayList;
-import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class ProductController {
 
     private final EntityManagerFactory emf = HibernateConfig.getEntityManagerFactory();
-    private final ProductDAO dao = new ProductDAO(emf);
+
+    private final ProductDAO productDAO = new ProductDAO(emf);
+
+    private static final Logger logger = LoggerFactory.getLogger(BasketController.class);
+    private static final Logger debugLogger = LoggerFactory.getLogger("app");
+
+    public void create(Context ctx) {
+        try {
+            ProductRequestDTO dto = ctx.bodyAsClass(ProductRequestDTO.class);
+            Product product = new Product(
+                    dto.getName(),
+                    dto.getPrice(),
+                    dto.getCategory());
+
+            productDAO.create(product);
+            ctx.status(HttpStatus.CREATED);
+        } catch (IllegalArgumentException e) {
+            logger.error(e.getMessage());
+            ctx.status(HttpStatus.BAD_REQUEST);
+        } catch (Exception e) {
+            logger.error(e.getMessage());
+            ctx.status(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    public void findByID(Context ctx){
+        try {
+            Integer id = Integer.parseInt(ctx.pathParam("id"));
+            Product product = productDAO.findById(id);
+            if (product == null) {
+                ctx.status(HttpStatus.NOT_FOUND).result("Product not found");
+            } else {
+                ProductResponseDTO dto = new ProductResponseDTO();
+                dto.setProductId(product.getId());
+                dto.setName(product.getName());
+                dto.setPrice(product.getPrice());
+                dto.setCategory(product.getCategory());
+                ctx.status(HttpStatus.OK);
+                ctx.json(dto);
+            }
+        }catch (NumberFormatException numberError){
+            ctx.status(HttpStatus.BAD_REQUEST).result("Invalid product id");
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
 
     /*
 

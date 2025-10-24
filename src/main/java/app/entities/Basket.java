@@ -1,6 +1,5 @@
 package app.entities;
 
-import app.dto.BasketDTO;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

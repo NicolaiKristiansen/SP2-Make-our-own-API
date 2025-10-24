@@ -1,8 +1,6 @@
 package app.entities;
 
 import app.enums.Category;
-import app.dto.ProductDTO;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,6 +21,7 @@ public class Product {
     private int id;
     private String name;
     private double price;
+    @Enumerated(EnumType.STRING)
     private Category category;
 
     @OneToMany(mappedBy = "product")
