@@ -65,20 +65,22 @@ public class ProductController {
     public void update(Context ctx) {
         Integer id = Integer.parseInt(ctx.pathParam("id"));
         ProductRequestDTO requestDTO = ctx.bodyAsClass(ProductRequestDTO.class);
-        Product product = new Product();
-        product.setName(requestDTO.getName());
-        product.setPrice(requestDTO.getPrice());
-        product.setCategory(requestDTO.getCategory());
 
         Product check = productDAO.findById(id);
 
         if (check != null) {
-            Product updatedProduct = productDAO.update(product, id);
+            check.setName(requestDTO.getName());
+            check.setPrice(requestDTO.getPrice());
+            check.setCategory(requestDTO.getCategory());
+
+            Product updatedProduct = productDAO.update(check, id);
+
             ProductResponseDTO responseDTO = new ProductResponseDTO();
             responseDTO.setProductId(updatedProduct.getId());
             responseDTO.setName(updatedProduct.getName());
             responseDTO.setPrice(updatedProduct.getPrice());
             responseDTO.setCategory(updatedProduct.getCategory());
+
             ctx.status(HttpStatus.OK);
             ctx.json(responseDTO);
         } else {
