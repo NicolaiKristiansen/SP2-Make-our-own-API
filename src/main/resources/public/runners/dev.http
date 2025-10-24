@@ -5,6 +5,7 @@
 ### post a product to specific basket
 POST https://{{url}}/baskets
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJcIlNvZnVzIExhcnNlblwiIiwic3ViIjoidXNlcjEiLCJleHAiOjE3NjEzMjkzNTAsInJvbGVzIjoiVXNlciIsInVzZXJuYW1lIjoidXNlcjEifQ.EpvzE1NMMMrid28iokHI6Hv0mdzDmurEXw6Gqiyj7tc
 
 {
   "basketId": "1",
@@ -26,6 +27,7 @@ Accept: application/json
 ### create a product
 POST https://{{url}}/products
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJcIlNvZnVzIExhcnNlblwiIiwic3ViIjoiQURNSU4iLCJleHAiOjE3NjEzMzEyODQsInJvbGVzIjoiQWRtaW4iLCJ1c2VybmFtZSI6IkFETUlOIn0.RFE-SaCdv1eh5_dKM4pFIY9VpaNmPyHeP6MQEz16PmM
 
 {
   "name": "Apple",

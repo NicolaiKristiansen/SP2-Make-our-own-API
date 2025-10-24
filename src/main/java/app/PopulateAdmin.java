@@ -3,24 +3,13 @@ package app;
 import app.config.HibernateConfig;
 import app.exceptions.EntityNotFoundException;
 import app.security.SecurityDAO;
-import jakarta.persistence.EntityManagerFactory;
+import app.security.SecurityRoutes.Role;
 
-public class PopulateRole {
-
+public class PopulateAdmin {
 
     public static void main(String[] args) throws EntityNotFoundException {
         SecurityDAO securityDAO = new SecurityDAO(HibernateConfig.getEntityManagerFactory());
-
-        securityDAO.createRole("User");
-        securityDAO.createRole("Anyone");
-        securityDAO.createRole("Admin");
-
         securityDAO.createUser("ADMIN", "1234");
         securityDAO.addUserRole("ADMIN", "Admin");
     }
-
-
-
-
-
 }

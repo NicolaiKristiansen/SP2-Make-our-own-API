@@ -2,6 +2,7 @@ package app.routes;
 
 import app.controllers.BasketController;
 import app.controllers.BasketProductController;
+import app.security.SecurityRoutes.Role;
 import io.javalin.apibuilder.EndpointGroup;
 
 import static io.javalin.apibuilder.ApiBuilder.get;
@@ -12,7 +13,7 @@ public class BasketProductRoutes {
 
     public EndpointGroup getRoutes() {
         return () -> {
-            get("/{id}", basketProductController::getProductsFromBasket);
+            get("/{id}", basketProductController::getProductsFromBasket, Role.USER);
         };
     }
 }

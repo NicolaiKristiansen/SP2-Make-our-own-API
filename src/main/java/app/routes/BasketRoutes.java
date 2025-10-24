@@ -1,6 +1,7 @@
 package app.routes;
 
 import app.controllers.BasketController;
+import app.security.SecurityRoutes.Role;
 import io.javalin.apibuilder.EndpointGroup;
 
 import static io.javalin.apibuilder.ApiBuilder.*;
@@ -11,7 +12,7 @@ public class BasketRoutes {
 
     public EndpointGroup getRoutes() {
         return () -> {
-            post("/", basketController::addProductToBasket);
+            post("/", basketController::addProductToBasket, Role.USER);
         };
     }
 }

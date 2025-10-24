@@ -1,12 +1,9 @@
 package app.security;
 
-
-import app.config.HibernateConfig;
 import app.exceptions.EntityNotFoundException;
 import app.exceptions.ValidationException;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
-
 
 public class SecurityDAO implements ISecurityDAO{
     EntityManagerFactory emf;
@@ -63,27 +60,6 @@ public class SecurityDAO implements ISecurityDAO{
             foundUser.addRole(foundRole);
             em.getTransaction().commit();
             return foundUser;
-        }
-
-    }
-    public static void main(String[] args) {
-        ISecurityDAO dao = new SecurityDAO(HibernateConfig.getEntityManagerFactory());
-
-        User user = dao.createUser("user1", "pass123");
-//        System.out.println(user.getUsername()+": "+user.getPassword());
-        Role role = dao.createRole("User");
-
-        try {
-            User updatedUser = dao.addUserRole("user1", "User");
-            System.out.println(updatedUser);
-        } catch (EntityNotFoundException e) {
-            e.printStackTrace();
-        }
-        try {
-            User validatedUser = dao.getVerifiedUser("user1", "pass123");
-            System.out.println("User was validated: "+validatedUser.getUsername());
-        } catch (ValidationException e) {
-            e.printStackTrace();
         }
     }
 }
