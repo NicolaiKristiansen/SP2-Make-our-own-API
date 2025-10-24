@@ -9,6 +9,7 @@ public class Routes {
   private BasketRoutes basketRoutes = new BasketRoutes();
   private RecieptRoutes recieptRoutes = new RecieptRoutes();
   private ProductRoutes productRoutes = new ProductRoutes();
+  private BasketProductRoutes basketProductRoutes = new BasketProductRoutes();
 
   public EndpointGroup getRoutes() {
         return () -> {
@@ -18,6 +19,7 @@ public class Routes {
             path("/receipt", recieptRoutes.getRoutes());
 
              */
+            path("/basketproducts", basketProductRoutes.getRoutes());
             path("/products", productRoutes.getRoutes());
         };
     }

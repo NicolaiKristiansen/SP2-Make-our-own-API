@@ -1,7 +1,9 @@
 package app;
 
 import app.config.HibernateConfig;
+import app.dao.BasketDAO;
 import app.dao.ProductDAO;
+import app.entities.Basket;
 import app.entities.Product;
 import app.enums.Category;
 
@@ -11,7 +13,12 @@ public class PopulateProduct {
 
     private static ArrayList<Product> products = new ArrayList<>();
 
+
+
     public static void main(String[] args){
+        ProductDAO productDAO = new ProductDAO(HibernateConfig.getEntityManagerFactory());
+        BasketDAO basketDAO = new BasketDAO(HibernateConfig.getEntityManagerFactory());
+
         Product product1 = new Product("Crease 3XP digital pen", 200.00, Category.ELECTRONICS);
         Product product2 = new Product("Milk", 18.00, Category.FOOD);
         Product product3 = new Product("Wacom XL Gen3 drawing tablet", 1800.00, Category.ELECTRONICS);
@@ -29,10 +36,12 @@ public class PopulateProduct {
         products.add(product6);
         products.add(product7);
 
-        ProductDAO dao = new ProductDAO(HibernateConfig.getEntityManagerFactory());
 
        for (Product product: products){
-           dao.create(product);
+           productDAO.create(product);
        }
+
+
+
     }
 }

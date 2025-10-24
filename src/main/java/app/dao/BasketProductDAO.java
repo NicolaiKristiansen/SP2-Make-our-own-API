@@ -1,8 +1,12 @@
 package app.dao;
 
+import app.entities.Basket;
 import app.entities.BasketProduct;
+import app.entities.Product;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
+
+import java.util.List;
 
 public class BasketProductDAO implements IDAO<BasketProduct, Integer> {
     private EntityManagerFactory emf;
@@ -24,6 +28,7 @@ public class BasketProductDAO implements IDAO<BasketProduct, Integer> {
     public BasketProduct findById(Integer id) {
         return null;
     }
+
 
     @Override
     public BasketProduct update(BasketProduct basketProduct, Integer id) {

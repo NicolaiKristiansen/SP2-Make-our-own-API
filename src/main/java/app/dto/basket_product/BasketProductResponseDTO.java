@@ -1,6 +1,5 @@
-package app.dto.product;
+package app.dto.basket_product;
 
-import app.dto.basket_product.BasketProductDTO;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -14,7 +13,6 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ProductsResponseDTO {
-    private List<ProductDTO> productDTOS;
-
+public class BasketProductResponseDTO {
+    private List<BasketProductDTO> basketProductDTOList;
 }

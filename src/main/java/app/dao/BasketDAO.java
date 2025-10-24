@@ -1,8 +1,14 @@
 package app.dao;
 
 import app.entities.Basket;
+import app.entities.BasketProduct;
+import app.entities.Product;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.TypedQuery;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class BasketDAO implements IDAO<Basket, Integer> {
     EntityManagerFactory emf;
@@ -30,6 +36,19 @@ public class BasketDAO implements IDAO<Basket, Integer> {
             } else {
                 return null;
             }
+        }
+    }
+
+    public List<BasketProduct> getProductsFromBasket(Integer id) {
+        try (EntityManager em = emf.createEntityManager()) {
+            Basket basket = em.find(Basket.class, id);
+            if (basket == null) {
+                return null;
+            }
+            TypedQuery<BasketProduct> query = em.createQuery(
+                    "SELECT bp FROM BasketProduct bp WHERE bp.basket.id = :basketId", BasketProduct.class);
+            query.setParameter("basketId", id);
+            return query.getResultList();
         }
     }
 
