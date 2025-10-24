@@ -4,6 +4,8 @@ import app.entities.Basket;
 import app.entities.BasketProduct;
 import app.entities.Product;
 import app.entities.Receipt;
+import app.security.Role;
+import app.security.User;
 import app.utils.Utils;
 import jakarta.persistence.EntityManagerFactory;
 import org.hibernate.SessionFactory;
@@ -47,6 +49,8 @@ public class HibernateConfig {
         configuration.addAnnotatedClass(Product.class);
         configuration.addAnnotatedClass(Receipt.class);
         configuration.addAnnotatedClass(BasketProduct.class);
+        configuration.addAnnotatedClass(User.class);
+        configuration.addAnnotatedClass(Role.class);
     }
 
     private static EntityManagerFactory createEMF(boolean forTest) {

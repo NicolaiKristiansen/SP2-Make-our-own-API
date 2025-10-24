@@ -1,0 +1,21 @@
+
+
+###
+POST http://{{url}}/auth/login
+
+{
+    "username": "user16",
+    "password": "pass12345"
+}
+
+###
+POST http://{{url}}/auth/register
+
+{
+    "username": "user1",
+    "password": "pass12345"
+}
+
+###
+GET http://{{url}}/protected/user_demo
+AUTHORIZATION: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJcIlNvZnVzIExhcnNlblwiIiwic3ViIjoidXNlcjEiLCJleHAiOjE3NTkzOTkwMzIsInJvbGVzIjoiVXNlciIsInVzZXJuYW1lIjoidXNlcjEifQ.Xg_Xb3VoIDs6AOoF7u2j06PHuAxA5LBBCGuRQpz95hY
