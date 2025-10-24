@@ -12,8 +12,6 @@ import io.javalin.http.HttpStatus;
 import jakarta.persistence.EntityManagerFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -90,7 +88,6 @@ public class ProductController {
         }
     }
 
-
     public void update(Context ctx) {
         Integer id = Integer.parseInt(ctx.pathParam("id"));
         ProductRequestDTO requestDTO = ctx.bodyAsClass(ProductRequestDTO.class);
@@ -122,74 +119,4 @@ public class ProductController {
         productDAO.delete(id);
         ctx.result("Product with id " + id + " deleted");
     }
-
-
-    /*
-
-        public void create(Context ctx){
-            try {
-                ProductDTO productDTO = ctx.bodyAsClass(ProductDTO.class);
-                Product createdProduct = dao.create(productDTO);
-
-                ctx.status(HttpStatus.OK).json(createdProduct);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-
-        public void findByID(Context ctx){
-            try {
-                Integer integer = Integer.parseInt(ctx.pathParam("id"));
-                Product product = dao.findById(integer);
-                if (product == null) {
-                    ctx.status(HttpStatus.NOT_FOUND).result("Product not found");
-                } else {
-                    ctx.status(HttpStatus.OK).json(product);
-                }
-            }catch (NumberFormatException numberError){
-                ctx.status(HttpStatus.BAD_REQUEST).result("Invalid product id");
-            }catch (Exception e){
-                e.printStackTrace();
-            }
-        }
-
-        public void update(Context ctx){
-            try{
-            Integer i = Integer.parseInt(ctx.pathParam("id"));
-            ProductDTO productDTO = ctx.bodyAsClass(ProductDTO.class);
-
-            Product product = dao.update(productDTO, i);
-
-            if (product == null) {
-                ctx.status(HttpStatus.NOT_FOUND).result("Product not found or not updated");
-            } else {
-                ctx.status(HttpStatus.OK).json(product);
-            }
-        } catch (Exception e) {
-        e.printStackTrace();
-            }
-        }
-
-        public void delete(Context ctx){
-            try {
-                Integer i = Integer.parseInt(ctx.pathParam("id"));
-                dao.delete(i);
-                ctx.status(HttpStatus.OK).result("The product has been deleted");
-            }catch (Exception e){
-                e.printStackTrace();
-            }
-        }
-
-        public void getAll(Context ctx){
-            try{
-                List<Product> products = new ArrayList<>();
-                products = dao.getAllProducts();
-
-                ctx.status(HttpStatus.OK).json(products);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-
-     */
 }

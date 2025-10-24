@@ -1,7 +1,5 @@
 package app.entities;
 
-
-import app.dto.receipt.ReceiptDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -12,7 +10,6 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-
 @Entity
 public class Receipt {
     @Id
@@ -24,14 +21,8 @@ public class Receipt {
     @OneToOne
     private Basket basket;
 
-    public Receipt(ReceiptDTO dto){
-        this.id = dto.getId();
-        this.totalPrice = dto.getTotalPrice();
-        if(dto.getBasketId() != 0) {
-            Basket b = new Basket();
-            b.setId(dto.getBasketId()); // sæt kun ID
-            this.basket = b;
-        }
+    public Receipt(double totalPrice, Basket basket) {
+        this.totalPrice = totalPrice;
+        this.basket = basket;
     }
-
 }

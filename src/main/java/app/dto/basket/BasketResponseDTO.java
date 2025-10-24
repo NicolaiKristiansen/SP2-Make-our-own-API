@@ -14,5 +14,4 @@ import java.util.List;
 public class BasketResponseDTO {
     private int basketId;
     private List<Integer> productIds;
-
 }

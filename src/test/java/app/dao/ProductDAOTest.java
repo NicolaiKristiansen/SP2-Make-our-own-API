@@ -2,66 +2,61 @@ package app.dao;
 
 import app.enums.Category;
 import app.config.HibernateConfig;
-import app.dto.product.ProductDTO;
 import app.entities.Product;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Order;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import static org.junit.jupiter.api.Assertions.*;
-class ProductDAOTest {
-    private ProductDAO dao;
 
-    @BeforeEach
-    void setUp() {
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+class ProductDAOTest {
+    private static ProductDAO dao;
+    private static int createdId;
+
+    @BeforeAll
+    static void setUp() {
         dao = new ProductDAO(HibernateConfig.getEntityManagerFactoryForTest());
     }
 
     @Test
     @Order(1)
     void create() {
-        ProductDTO productDTO = new ProductDTO("Test Object", 2000, Category.ELECTRONICS);
-        Product product = dao.create(productDTO);
+        Product expected = new Product("Test Object", 2000, Category.ELECTRONICS);
+        Product actual = dao.create(expected);
+        createdId = actual.getId();
 
-        assertEquals(product.getName(), productDTO.getName());
-        assertEquals(product.getPrice(), productDTO.getPrice());
-        assertEquals(product.getCategory(), productDTO.getCategory());
+        assertEquals(expected.getName(), actual.getName());
+        assertEquals(expected.getPrice(), actual.getPrice());
+        assertEquals(expected.getCategory(), actual.getCategory());
     }
 
     @Test
     @Order(2)
     void findById() {
-        ProductDTO expected = new ProductDTO("Crease 3XP digital pen", 200.00, Category.ELECTRONICS);
-        Product created = dao.create(expected);
-        Product actual = dao.findById(created.getId());
+        Product expected = new Product("Test Object", 2000, Category.ELECTRONICS);
+        Product actual = dao.findById(createdId);
 
-
-        assertEquals(created.getName(), actual.getName());
-        assertEquals(created.getPrice(), actual.getPrice());
-        assertEquals(created.getCategory(), actual.getCategory());
+        assertEquals(expected.getName(), actual.getName());
+        assertEquals(expected.getPrice(), actual.getPrice());
+        assertEquals(expected.getCategory(), actual.getCategory());
     }
 
     @Test
     @Order(3)
     void update() {
-        ProductDTO originalDTO = new ProductDTO("Old Name", 50.0, Category.FUNATURE);
-        Product original = dao.create(originalDTO);
+        Product expected = new Product("New Name", 50.0, Category.FURNITURE);
+        expected.setId(createdId);
+        Product actual = dao.update(expected, createdId);
 
-        ProductDTO updatedDTO = new ProductDTO("New Name", 75.0, Category.ELECTRONICS);
-        Product updated = dao.update(updatedDTO, original.getId());
-
-        assertEquals("New Name", updated.getName());
+        assertEquals(expected.getName(), actual.getName());
+        assertEquals(expected.getPrice(), actual.getPrice());
+        assertEquals(expected.getCategory(), actual.getCategory());
     }
 
     @Test
     @Order(4)
     void delete() {
-        ProductDTO dto = new ProductDTO("Delete Me", 10.0, Category.FOOD);
-        Product product = dao.create(dto);
-
-        dao.delete(product.getId());
-
-        Product found = dao.findById(product.getId());
+        dao.delete(createdId);
+        Product found = dao.findById(createdId);
         assertNull(found);
     }
 }

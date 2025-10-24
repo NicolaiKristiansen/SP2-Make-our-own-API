@@ -23,9 +23,9 @@ public class PopulateProduct {
         Product product2 = new Product("Milk", 18.00, Category.FOOD);
         Product product3 = new Product("Wacom XL Gen3 drawing tablet", 1800.00, Category.ELECTRONICS);
         Product product4 = new Product("Bread Bundle", 54.00, Category.FOOD);
-        Product product5 = new Product("Chair", 200.00, Category.FUNATURE);
-        Product product6 = new Product("Table", 500.00, Category.FUNATURE);
-        Product product7 = new Product("Sofa", 700.00, Category.FUNATURE);
+        Product product5 = new Product("Chair", 200.00, Category.FURNITURE);
+        Product product6 = new Product("Table", 500.00, Category.FURNITURE);
+        Product product7 = new Product("Sofa", 700.00, Category.FURNITURE);
 
 
         products.add(product1);

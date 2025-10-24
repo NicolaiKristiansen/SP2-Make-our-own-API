@@ -16,5 +16,4 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ProductsResponseDTO {
     private List<ProductDTO> productDTOS;
-
 }

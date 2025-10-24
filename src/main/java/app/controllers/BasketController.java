@@ -11,8 +11,6 @@ import app.entities.Product;
 import io.javalin.http.Context;
 import io.javalin.http.HttpStatus;
 import jakarta.persistence.EntityManagerFactory;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class BasketController {
     private final EntityManagerFactory emf = HibernateConfig.getEntityManagerFactory();
@@ -20,10 +18,6 @@ public class BasketController {
     private BasketDAO basketDAO = new BasketDAO(emf);
     private ProductDAO productDAO = new ProductDAO(emf);
     private BasketProductDAO basketProductDAO = new BasketProductDAO(emf);
-
-    private static final Logger logger = LoggerFactory.getLogger(BasketController.class);
-    private static final Logger debugLogger = LoggerFactory.getLogger("app");
-
 
     public void addProductToBasket(Context ctx) {
         BasketRequestDTO dto = ctx.bodyAsClass(BasketRequestDTO.class);
@@ -39,8 +33,4 @@ public class BasketController {
         basketProductDAO.create(basketProduct);
         ctx.status(HttpStatus.OK);
     }
-
-
-
-
 }

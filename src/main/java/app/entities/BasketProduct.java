@@ -22,7 +22,6 @@ public class BasketProduct {
 
     private double amount;
 
-
     public BasketProduct(Basket basket, Product product, double amount) {
         this.basket = basket;
         this.product = product;

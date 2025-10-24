@@ -16,5 +16,4 @@ public class BasketDTO {
     private int id;
     private List<Integer> productIds;
     private int receiptId;
-
 }

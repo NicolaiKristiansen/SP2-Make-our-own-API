@@ -74,18 +74,4 @@ public class ProductDAO implements IDAO<Product, Integer>{
             em.getTransaction().commit();
         }
     }
-    /*
-
-    public List<Product> getAllProducts(){
-        List<Product> products = new ArrayList<>();
-        try(EntityManager em = emf.createEntityManager()){
-            em.getTransaction().begin();
-            TypedQuery<Product> query= em.createQuery("select p from Product p", Product.class);
-            products = query.getResultList();
-
-            return products;
-        }
-    }
-
- */
 }

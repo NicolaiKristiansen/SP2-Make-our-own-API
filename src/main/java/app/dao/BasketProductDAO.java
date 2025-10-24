@@ -8,13 +8,13 @@ import jakarta.persistence.EntityManagerFactory;
 
 import java.util.List;
 
-public class BasketProductDAO implements IDAO<BasketProduct, Integer> {
+public class BasketProductDAO {
     private EntityManagerFactory emf;
 
     public BasketProductDAO(EntityManagerFactory emf) {
         this.emf = emf;
     }
-    @Override
+
     public BasketProduct create(BasketProduct basketProduct) {
         try(EntityManager em = emf.createEntityManager()) {
             em.getTransaction().begin();
@@ -22,21 +22,5 @@ public class BasketProductDAO implements IDAO<BasketProduct, Integer> {
             em.getTransaction().commit();
             return basketProduct;
         }
-    }
-
-    @Override
-    public BasketProduct findById(Integer id) {
-        return null;
-    }
-
-
-    @Override
-    public BasketProduct update(BasketProduct basketProduct, Integer id) {
-        return null;
-    }
-
-    @Override
-    public void delete(Integer id) {
-
     }
 }

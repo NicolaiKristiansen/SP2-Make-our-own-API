@@ -52,7 +52,6 @@ public class BasketDAO implements IDAO<Basket, Integer> {
         }
     }
 
-
     @Override
     public Basket update(Basket basket, Integer id) {
         return null;
@@ -67,21 +66,4 @@ public class BasketDAO implements IDAO<Basket, Integer> {
             em.getTransaction().commit();
         }
     }
-
-
-/*
-    @Override
-    public Basket update(BasketDTO basketDTO, Integer id) {
-        try(EntityManager em = emf.createEntityManager()) {
-            em.getTransaction().begin();
-            Basket b = em.find(Basket.class, id);
-            b.setId(basketDTO.getId());
-          //  b.setProducts(basketDTO.getProducts());
-           // b.setReceipt(basketDTO.getReceipt());
-            Basket mergedBasket = em.merge(b);
-            em.getTransaction().commit();
-            return mergedBasket;
-        }
-    }
-     */
 }
