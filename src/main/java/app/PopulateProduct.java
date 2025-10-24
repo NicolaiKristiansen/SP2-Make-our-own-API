@@ -13,11 +13,8 @@ public class PopulateProduct {
 
     private static ArrayList<Product> products = new ArrayList<>();
 
-
-
     public static void main(String[] args){
         ProductDAO productDAO = new ProductDAO(HibernateConfig.getEntityManagerFactory());
-        BasketDAO basketDAO = new BasketDAO(HibernateConfig.getEntityManagerFactory());
 
         Product product1 = new Product("Crease 3XP digital pen", 200.00, Category.ELECTRONICS);
         Product product2 = new Product("Milk", 18.00, Category.FOOD);
@@ -40,8 +37,5 @@ public class PopulateProduct {
        for (Product product: products){
            productDAO.create(product);
        }
-
-
-
     }
 }

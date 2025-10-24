@@ -1,7 +1,6 @@
 package app.security;
 
 public interface ISecurityDAO {
-
 /*
     User getVerifiedUser(String username, String password) throws ValidationException; // used for login
     User createUser(String username, String password); // used for register
