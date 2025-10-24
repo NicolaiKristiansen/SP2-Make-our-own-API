@@ -11,16 +11,12 @@ public class ProductRoutes {
     public EndpointGroup getRoutes(){
         return () -> {
             post("/", controller::create);
-
             get("/{id}", controller::findByID);
             /*
             get("/", controller::getAll);
+             */
             put("/{id}", controller::update);
             delete("/{id}", controller::delete);
-
-             */
-
         };
     }
-
 }

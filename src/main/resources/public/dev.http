@@ -47,3 +47,18 @@ Content-Type: application/json
 ### find product
 GET http://localhost:7007/api/products/1
 Accept: application/json
+
+### update product
+PUT http://localhost:7007/api/products/1
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name": "Phone",
+  "price": "50.2",
+  "category": "ELECTRONICS"
+}
+
+### delete product
+DELETE http://localhost:7007/api/products/1
+Accept: application/json

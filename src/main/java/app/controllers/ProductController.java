@@ -62,6 +62,37 @@ public class ProductController {
     }
 
 
+    public void update(Context ctx) {
+        Integer id = Integer.parseInt(ctx.pathParam("id"));
+        ProductRequestDTO requestDTO = ctx.bodyAsClass(ProductRequestDTO.class);
+        Product product = new Product();
+        product.setName(requestDTO.getName());
+        product.setPrice(requestDTO.getPrice());
+        product.setCategory(requestDTO.getCategory());
+
+        Product check = productDAO.findById(id);
+
+        if (check != null) {
+            Product updatedProduct = productDAO.update(product, id);
+            ProductResponseDTO responseDTO = new ProductResponseDTO();
+            responseDTO.setProductId(updatedProduct.getId());
+            responseDTO.setName(updatedProduct.getName());
+            responseDTO.setPrice(updatedProduct.getPrice());
+            responseDTO.setCategory(updatedProduct.getCategory());
+            ctx.status(HttpStatus.OK);
+            ctx.json(responseDTO);
+        } else {
+            ctx.status(HttpStatus.BAD_REQUEST).result("Invalid product id");
+        }
+    }
+
+    public void delete(Context ctx) {
+        int id = Integer.parseInt(ctx.pathParam("id"));
+        productDAO.delete(id);
+        ctx.result("Product with id " + id + " deleted");
+    }
+
+
     /*
 
         public void create(Context ctx){
