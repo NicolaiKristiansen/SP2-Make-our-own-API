@@ -40,6 +40,10 @@ public class BasketController {
     public void getBasketById(Context ctx) {
         int id = Integer.parseInt(ctx.pathParam("id"));
         Basket basket = basketDAO.findById(id);
+        if (basket==null){
+            ctx.status(HttpStatus.NOT_FOUND);
+            return;
+        }
         BasketDTO basketDTO = new BasketDTO(basket);
         ctx.status(HttpStatus.OK);
         ctx.json(basketDTO);
