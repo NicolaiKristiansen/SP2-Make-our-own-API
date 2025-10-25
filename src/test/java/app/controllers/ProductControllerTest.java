@@ -1,68 +1,85 @@
-package app.dao;
+package app.controllers;
 
+import app.config.ApplicationConfig;
+import app.routes.Routes;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.equalTo;
-import static org.junit.jupiter.api.Assertions.*;
 
-class BasketDAOTest {
-    private static int createdBasketId;
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+class ProductControllerTest {
+    private static int createdProductId;
 
     @BeforeAll
     public static void setup() {
-        RestAssured.baseURI = "http://localhost:7070/api/baskets";
+        RestAssured.baseURI = "http://localhost:7070";
+        RestAssured.basePath = "/api/products";
+        ApplicationConfig.
+                getInstance()
+                .initiateServer()
+                .setRoute(new Routes().getRoutes())
+                .startServer(7070);
     }
 
     @Test
+    @Order(1)
     void create() {
-        String basketJson = """
+        String productJson =
+        """
         {
+            "name": "Phone",
+            "price": "50.2",
+            "category": "ELECTRONICS"
         }
         """;
 
         Response response =
                 given()
                         .contentType(ContentType.JSON)
-                        .body(basketJson)
+                        .body(productJson)
                         .when()
                         .post()
                         .then()
                         .contentType(ContentType.JSON)
                         .statusCode(201)
-                        .body("id", equalTo(1))
+                        .body("productId", equalTo(1))
                         .extract().response();
 
-        createdBasketId = response.path("id");
+        createdProductId = response.path("productId");
     }
 
     @Test
+    @Order(2)
     void findById() {
         given()
-                .pathParam("id", createdBasketId)
+                .pathParam("id", createdProductId)
                 .when()
                 .get("/{id}")
                 .then()
                 .statusCode(200)
-                .body("id", equalTo(createdBasketId));
+                .body("productId", equalTo(createdProductId));
     }
 
     @Test
+    @Order(3)
     void update() {
-        String updatedHotelJson = """
+        String updatedProductJson = """
         {
+            "name": "Updated Phone",
+            "price": "99.9",
+            "category": "ELECTRONICS"
         }
         """;
 
         given()
                 .contentType(ContentType.JSON)
-                .pathParam("id", createdBasketId)
-                .body(updatedHotelJson)
+                .pathParam("id", createdProductId)
+                .body(updatedProductJson)
                 .when()
                 .put("/{id}")
                 .then()
@@ -70,9 +87,10 @@ class BasketDAOTest {
     }
 
     @Test
+    @Order(4)
     void delete() {
         given()
-                .pathParam("id", createdBasketId)
+                .pathParam("id", createdProductId)
                 .when()
                 .delete("/{id}")
                 .then()

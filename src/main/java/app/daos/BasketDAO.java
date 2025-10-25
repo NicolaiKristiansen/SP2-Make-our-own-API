@@ -1,11 +1,14 @@
-package app.dao;
+package app.daos;
 
-import app.dto.BasketDTO;
 import app.entities.Basket;
+import app.entities.BasketProduct;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.TypedQuery;
 
-public class BasketDAO implements IDAO<Basket, BasketDTO> {
+import java.util.List;
+
+public class BasketDAO implements IDAO<Basket, Integer> {
     EntityManagerFactory emf;
 
     public BasketDAO(EntityManagerFactory emf) {
@@ -13,8 +16,7 @@ public class BasketDAO implements IDAO<Basket, BasketDTO> {
     }
 
     @Override
-    public Basket create(BasketDTO basketDTO) {
-        Basket basket = new Basket(basketDTO);
+    public Basket create(Basket basket) {
         try(EntityManager em = emf.createEntityManager()) {
             em.getTransaction().begin();
             em.persist(basket);
@@ -24,7 +26,7 @@ public class BasketDAO implements IDAO<Basket, BasketDTO> {
     }
 
     @Override
-    public Basket findById(int id) {
+    public Basket findById(Integer id) {
         try(EntityManager em = emf.createEntityManager()) {
             Basket basket = em.find(Basket.class, id);
             if (basket != null) {
@@ -35,22 +37,26 @@ public class BasketDAO implements IDAO<Basket, BasketDTO> {
         }
     }
 
-    @Override
-    public Basket update(BasketDTO basketDTO, Integer id) {
-        try(EntityManager em = emf.createEntityManager()) {
-            em.getTransaction().begin();
-            Basket b = em.find(Basket.class, id);
-            b.setId(basketDTO.getId());
-            b.setProducts(basketDTO.getProducts());
-            b.setReceipt(basketDTO.getReceipt());
-            Basket mergedBasket = em.merge(b);
-            em.getTransaction().commit();
-            return mergedBasket;
+    public List<BasketProduct> getProductsFromBasket(Integer id) {
+        try (EntityManager em = emf.createEntityManager()) {
+            Basket basket = em.find(Basket.class, id);
+            if (basket == null) {
+                return null;
+            }
+            TypedQuery<BasketProduct> query = em.createQuery(
+                    "SELECT bp FROM BasketProduct bp WHERE bp.basket.id = :basketId", BasketProduct.class);
+            query.setParameter("basketId", id);
+            return query.getResultList();
         }
     }
 
     @Override
-    public void delete(int id) {
+    public Basket update(Basket basket, Integer id) {
+        return null;
+    }
+
+    @Override
+    public void delete(Integer id) {
         try(EntityManager em = emf.createEntityManager()) {
             Basket deleteBasket = em.find(Basket.class, id);
             em.getTransaction().begin();

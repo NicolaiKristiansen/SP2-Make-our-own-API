@@ -3,36 +3,31 @@ package app;
 import app.config.ApplicationConfig;
 import app.config.HibernateConfig;
 import app.routes.Routes;
-import jakarta.persistence.EntityManagerFactory;
+import app.security.routes.SecurityRoutes;
 
 import static io.javalin.apibuilder.ApiBuilder.get;
 import static io.javalin.apibuilder.ApiBuilder.path;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
         System.out.println("Hello SP2");
-        Routes routes = new Routes();
 
-        EntityManagerFactory emf = HibernateConfig.getEntityManagerFactory();
+        HibernateConfig.getEntityManagerFactory();
 
         ApplicationConfig
                 .getInstance()
                 .initiateServer()
-//            .checkSecurityRoles() // check for role when route is called
-//            .setRoute(SecurityRoutes.getSecurityRoutes())
-//            .setRoute(SecurityRoutes.getSecuredRoutes())
+                .checkSecurityRoles() // check for role when route is called
+                .setRoute(new SecurityRoutes().getSecurityRoutes())
+                .setRoute(SecurityRoutes.getSecuredRoutes())
                 .setRoute(new Routes().getRoutes())
                 .setRoute(()->{
                     path("/index",()->{
                         get("/",ctx->ctx.render("index.html"));
                     });
                 })
-                .setRoute(routes.getRoutes())
-                .startServer(7070)
+                .startServer(7007)
                 .setCORS()
                 .setGeneralExceptionHandling();
     }
-
 }

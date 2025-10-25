@@ -1,28 +1,30 @@
 package app.entities;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+@NoArgsConstructor
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
 @Entity
-public class Receipt {
+public class BasketProduct {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    private double totalPrice;
-
-    @OneToOne
+    @ManyToOne
     private Basket basket;
 
-    public Receipt(double totalPrice, Basket basket) {
-        this.totalPrice = totalPrice;
+    @ManyToOne
+    private Product product;
+
+    private double amount;
+
+    public BasketProduct(Basket basket, Product product, double amount) {
         this.basket = basket;
+        this.product = product;
+        this.amount = amount;
     }
 }
