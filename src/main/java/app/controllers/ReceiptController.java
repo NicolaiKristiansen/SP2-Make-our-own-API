@@ -1,7 +1,7 @@
 package app.controllers;
 
 import app.config.HibernateConfig;
-import app.dao.ReceiptDAO;
+import app.daos.ReceiptDAO;
 import jakarta.persistence.EntityManagerFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -1,8 +1,7 @@
 package app.routes;
 
-import app.controllers.BasketController;
 import app.controllers.BasketProductController;
-import app.security.SecurityRoutes.Role;
+import app.security.routes.SecurityRoutes.Role;
 import io.javalin.apibuilder.EndpointGroup;
 
 import static io.javalin.apibuilder.ApiBuilder.get;

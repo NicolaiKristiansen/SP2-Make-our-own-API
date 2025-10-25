@@ -1,10 +1,10 @@
 package app.controllers;
 
 import app.config.HibernateConfig;
-import app.dao.BasketDAO;
-import app.dao.BasketProductDAO;
-import app.dto.basket_product.BasketProductDTO;
-import app.dto.basket_product.BasketProductResponseDTO;
+import app.daos.BasketDAO;
+import app.daos.BasketProductDAO;
+import app.dtos.basket_product.BasketProductDTO;
+import app.dtos.basket_product.BasketProductResponseDTO;
 import app.entities.BasketProduct;
 import io.javalin.http.Context;
 import io.javalin.http.HttpStatus;

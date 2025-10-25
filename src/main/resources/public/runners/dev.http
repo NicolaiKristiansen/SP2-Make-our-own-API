@@ -1,11 +1,38 @@
 //API Endpoints
 
+//Security Endpoints
+### register a user
+POST http://{{url}}/auth/register
 
-//Basket Endpoints
+{
+    "username": "user1",
+    "password": "pass12345"
+}
+
+
+### login
+POST http://{{url}}/auth/login
+
+{
+    "username": "ADMIN",
+    "password": "1234"
+}
+
+### test user token
+GET http://{{url}}/protected/user_demo
+AUTHORIZATION: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJcIlNvZnVzIExhcnNlblwiIiwic3ViIjoidXNlcjEiLCJleHAiOjE3NjEzMjkzNTAsInJvbGVzIjoiVXNlciIsInVzZXJuYW1lIjoidXNlcjEifQ.EpvzE1NMMMrid28iokHI6Hv0mdzDmurEXw6Gqiyj7tc
+
+### test admin token
+GET http://{{url}}/protected/admin_demo
+AUTHORIZATION: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJcIlNvZnVzIExhcnNlblwiIiwic3ViIjoidXNlcjEiLCJleHAiOjE3NjEzMjkzNTAsInJvbGVzIjoiVXNlciIsInVzZXJuYW1lIjoidXNlcjEifQ.EpvzE1NMMMrid28iokHI6Hv0mdzDmurEXw6Gqiyj7tc
+
+
+
+//Basket & Product Endpoints
 ### post a product to specific basket
 POST https://{{url}}/baskets
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJcIlNvZnVzIExhcnNlblwiIiwic3ViIjoidXNlcjEiLCJleHAiOjE3NjEzMjkzNTAsInJvbGVzIjoiVXNlciIsInVzZXJuYW1lIjoidXNlcjEifQ.EpvzE1NMMMrid28iokHI6Hv0mdzDmurEXw6Gqiyj7tc
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJcIlNvZnVzIExhcnNlblwiIiwic3ViIjoidXNlcjEiLCJleHAiOjE3NjEzODAwNTQsInJvbGVzIjoiVXNlciIsInVzZXJuYW1lIjoidXNlcjEifQ.podGRgtnsMtNjbRDF6noPqXlvh-8bLAZevgAPu5bxyk
 
 {
   "basketId": "1",
@@ -13,21 +40,11 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJcIlNvZnVzIExhcnNlblwiIiwic
   "amount": "10"
 }
 
-### get a specific basket
-GET https://{{url}}/baskets/1
-Accept: application/json
 
-
-### delete a basket
-DELETE https://{{url}}/baskets/1
-Accept: application/json
-
-
-//Product Endpoints
 ### create a product
 POST https://{{url}}/products
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJcIlNvZnVzIExhcnNlblwiIiwic3ViIjoiQURNSU4iLCJleHAiOjE3NjEzMzEyODQsInJvbGVzIjoiQWRtaW4iLCJ1c2VybmFtZSI6IkFETUlOIn0.RFE-SaCdv1eh5_dKM4pFIY9VpaNmPyHeP6MQEz16PmM
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJcIlNvZnVzIExhcnNlblwiIiwic3ViIjoidXNlcjEiLCJleHAiOjE3NjEzODAwNTQsInJvbGVzIjoiVXNlciIsInVzZXJuYW1lIjoidXNlcjEifQ.podGRgtnsMtNjbRDF6noPqXlvh-8bLAZevgAPu5bxyk
 
 {
   "name": "Apple",
@@ -38,15 +55,18 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJcIlNvZnVzIExhcnNlblwiIiwic
 ### find a specific product
 GET https://{{url}}/products/1
 Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJcIlNvZnVzIExhcnNlblwiIiwic3ViIjoidXNlcjEiLCJleHAiOjE3NjEzODAwNTQsInJvbGVzIjoiVXNlciIsInVzZXJuYW1lIjoidXNlcjEifQ.podGRgtnsMtNjbRDF6noPqXlvh-8bLAZevgAPu5bxyk
 
 ### find all existing products
 GET https://{{url}}/products
 Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJcIlNvZnVzIExhcnNlblwiIiwic3ViIjoidXNlcjEiLCJleHAiOjE3NjEzODAwNTQsInJvbGVzIjoiVXNlciIsInVzZXJuYW1lIjoidXNlcjEifQ.podGRgtnsMtNjbRDF6noPqXlvh-8bLAZevgAPu5bxyk
 
 ### update a product
 PUT https://{{url}}/products/1
 Content-Type: application/json
 Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJcIlNvZnVzIExhcnNlblwiIiwic3ViIjoidXNlcjEiLCJleHAiOjE3NjEzODAwNTQsInJvbGVzIjoiVXNlciIsInVzZXJuYW1lIjoidXNlcjEifQ.podGRgtnsMtNjbRDF6noPqXlvh-8bLAZevgAPu5bxyk
 
 {
   "name": "Phone",
@@ -57,11 +77,12 @@ Accept: application/json
 ### delete product
 DELETE https://{{url}}/products/1
 Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJcIlNvZnVzIExhcnNlblwiIiwic3ViIjoidXNlcjEiLCJleHAiOjE3NjEzODAwNTQsInJvbGVzIjoiVXNlciIsInVzZXJuYW1lIjoidXNlcjEifQ.podGRgtnsMtNjbRDF6noPqXlvh-8bLAZevgAPu5bxyk
 
 
-//Basket & Product Endpoints
 ### find all products from specific basket
 GET https://{{url}}/basketproducts/1
 Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJcIlNvZnVzIExhcnNlblwiIiwic3ViIjoidXNlcjEiLCJleHAiOjE3NjEzODAwNTQsInJvbGVzIjoiVXNlciIsInVzZXJuYW1lIjoidXNlcjEifQ.podGRgtnsMtNjbRDF6noPqXlvh-8bLAZevgAPu5bxyk
 
 //Receipt

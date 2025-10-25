@@ -3,7 +3,7 @@ package app;
 import app.config.ApplicationConfig;
 import app.config.HibernateConfig;
 import app.routes.Routes;
-import app.security.SecurityRoutes;
+import app.security.routes.SecurityRoutes;
 
 import static io.javalin.apibuilder.ApiBuilder.get;
 import static io.javalin.apibuilder.ApiBuilder.path;
@@ -30,5 +30,4 @@ public class Main {
                 .setCORS()
                 .setGeneralExceptionHandling();
     }
-
 }

@@ -1,8 +1,8 @@
 package app.config;
 
 
-import app.security.ISecurityController;
-import app.security.SecurityController;
+import app.security.controllers.ISecurityController;
+import app.security.controllers.SecurityController;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import app.exceptions.ApiException;

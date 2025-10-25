@@ -1,11 +1,11 @@
 package app.controllers;
 
 import app.config.HibernateConfig;
-import app.dao.ProductDAO;
-import app.dto.product.ProductDTO;
-import app.dto.product.ProductRequestDTO;
-import app.dto.product.ProductResponseDTO;
-import app.dto.product.ProductsResponseDTO;
+import app.daos.ProductDAO;
+import app.dtos.product.ProductDTO;
+import app.dtos.product.ProductRequestDTO;
+import app.dtos.product.ProductResponseDTO;
+import app.dtos.product.ProductsResponseDTO;
 import app.entities.Product;
 import io.javalin.http.Context;
 import io.javalin.http.HttpStatus;
